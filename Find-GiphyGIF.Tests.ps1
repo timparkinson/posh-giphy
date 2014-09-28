@@ -94,7 +94,7 @@ Describe "when calling Find-GiphyGIF and the endpoint cannot be reached" {
     }
 }
 
-Describe "when calling FInd-GiphyGIF on a non-common term" {
+Describe "when calling Find-GiphyGIF on a non-common term" {
     It "should return a 0 count when there is no result" {
         Mock Invoke-RestMethod {
             ConvertFrom-Json @"
@@ -106,4 +106,18 @@ Describe "when calling FInd-GiphyGIF on a non-common term" {
         $result.count | Should Be 0
     }
         
+}
+
+Describe "when calling Find-GiphyGIF with the translate switch" {
+    It "should return a GIF" {
+        Mock Invoke-RestMethod {
+            ConvertFrom-Json @"
+{"data":{"type":"gif","id":"3avUsGhmckIYE","url":"http:\/\/giphy.com\/gifs\/3avUsGhmckIYE","bitly_gif_url":"http:\/\/gph.is\/XH7V6j","bitly_url":"http:\/\/gph.is\/XH7V6j","embed_url":"http:\/\/giphy.com\/embed\/3avUsGhmckIYE","username":"","source":"http:\/\/wonderwomanzombies.tumblr.com\/post\/35372021647","rating":"g","caption":"","content_url":"","trending_datetime":"2014-07-25 21:32:56","images":{"fixed_height":{"url":"http:\/\/media2.giphy.com\/media\/3avUsGhmckIYE\/200.gif","width":"289","height":"200","mp4":"http:\/\/media.giphy.com\/media\/3avUsGhmckIYE\/200.mp4"},"fixed_height_still":{"url":"http:\/\/media3.giphy.com\/media\/3avUsGhmckIYE\/200_s.gif","width":"289","height":"200"},"fixed_height_downsampled":{"url":"http:\/\/media1.giphy.com\/media\/3avUsGhmckIYE\/200_d.gif","width":"289","height":"200"},"fixed_width":{"url":"http:\/\/media0.giphy.com\/media\/3avUsGhmckIYE\/200w.gif","width":"200","height":"138","mp4":"http:\/\/media.giphy.com\/media\/3avUsGhmckIYE\/200w.mp4"},"fixed_width_still":{"url":"http:\/\/media3.giphy.com\/media\/3avUsGhmckIYE\/200w_s.gif","width":"200","height":"138"},"fixed_width_downsampled":{"url":"http:\/\/media0.giphy.com\/media\/3avUsGhmckIYE\/200w_d.gif","width":"200","height":"138"},"downsized":{"url":"http:\/\/media3.giphy.com\/media\/3avUsGhmckIYE\/giphy.gif","width":"500","height":"346","size":"279481"},"downsized_still":{"url":"http:\/\/media4.giphy.com\/media\/3avUsGhmckIYE\/giphy_s.gif","width":"500","height":"346"},"original":{"url":"http:\/\/media3.giphy.com\/media\/3avUsGhmckIYE\/giphy.gif","width":"500","height":"346","size":"279481","frames":"7","mp4":"http:\/\/media.giphy.com\/media\/3avUsGhmckIYE\/giphy.mp4"},"original_still":{"url":"http:\/\/media4.giphy.com\/media\/3avUsGhmckIYE\/giphy_s.gif","width":"500","height":"346"}}},"meta":{"status":200,"msg":"OK"}}
+"@
+        }
+
+        $result = Find-GiphyGIF -Query 'Superman' -Translate
+        $result.Count | Should Be 1
+    }
+
 }
