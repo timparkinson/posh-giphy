@@ -7,14 +7,14 @@
         [Parameter()]
         [String]$APIKey = 'dc6zaTOxFJmzC',
         [Parameter()]
-        [String]$Endpoint = 'http://api.giphy.com/v1/random?'
+        [String]$Endpoint = 'http://api.giphy.com/v1/random'
     )
 
     begin {}
 
     process {
         
-        $url = "$Endpoint`api_key=$APIKey"
+        $url = "$Endpoint`?api_key=$APIKey"
         if ($Tag) {
             $url += "&tag=$Tag"
         }

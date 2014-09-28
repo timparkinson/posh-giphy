@@ -7,14 +7,14 @@
         [Parameter()]
         [String]$APIKey = 'dc6zaTOxFJmzC',
         [Parameter()]
-        [String]$Endpoint = 'http://api.giphy.com/v1/trending?'
+        [String]$Endpoint = 'http://api.giphy.com/v1/trending'
     )
 
     begin {}
 
     process {
         
-        $url = "$Endpoint`api_key=$APIKey"
+        $url = "$Endpoint`?api_key=$APIKey"
         if ($Limit) {
             $url += "&limit=$Limit"
         }
