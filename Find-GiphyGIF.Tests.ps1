@@ -84,12 +84,17 @@ Describe "when calling Find-GiphyGIF on a common term" {
         $result = Find-GiphyGIF -Query 'Funny Cat'
         $result | Should Not BeNullOrEmpty
     }
+}
 
-    It "should error when the endpoint cannot be reached" {
+Describe "when calling Find-GiphyGIF and the endpoint cannot be reached" {
+
+    It "should error" {
         Mock Invoke-RestMethod {throw "Error!"}
         {Find-GiphyGIF -Query 'Funny Cat'} | Should Throw
     }
+}
 
+Describe "when calling FInd-GiphyGIF on a non-common term" {
     It "should return a 0 count when there is no result" {
         Mock Invoke-RestMethod {
             ConvertFrom-Json @"
