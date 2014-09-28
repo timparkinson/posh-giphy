@@ -14,7 +14,7 @@
 
     process {
         $joined_ids = $ID -join ','
-        $url = "$Endpoint$joined_ids`?$APIKey"
+        $url = "$Endpoint$joined_ids`?api_key=$APIKey"
 
         Write-Verbose "Attempting to query $url"
         try {

@@ -22,7 +22,7 @@
         } else {
             $api = 'q'
         }
-        $url = "$Endpoint$api=$Query&$APIKey"
+        $url = "$Endpoint$api=$Query&api_key=$APIKey"
 
         Write-Verbose "Attempting to query $url"
         try {
