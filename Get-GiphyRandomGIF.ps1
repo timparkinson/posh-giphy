@@ -7,7 +7,7 @@
         [Parameter()]
         [String]$APIKey = 'dc6zaTOxFJmzC',
         [Parameter()]
-        [String]$Endpoint = 'http://api.giphy.com/v1/random'
+        [String]$Endpoint = 'http://api.giphy.com/v1/gifs/random'
     )
 
     begin {}
